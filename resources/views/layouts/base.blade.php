@@ -50,6 +50,7 @@
     @show
 
     @section('main')
+    
     @show
     <footer>
         <div class="page-footer orange accent-3">

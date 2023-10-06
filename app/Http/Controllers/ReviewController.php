@@ -20,10 +20,6 @@ class ReviewController extends Controller
     public function reviewInsert(Request $request)
     {
         //バリデーション()
-        $input = $request->validate([
-            'recommend' => 'required | string',
-            'comment' => 'required | string'
-        ]);
         $data = [
             'record' => book::find($request->id)
         ];

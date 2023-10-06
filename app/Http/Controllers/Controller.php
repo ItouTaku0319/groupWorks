@@ -12,10 +12,11 @@ class Controller extends BaseController
     use AuthorizesRequests, ValidatesRequests;
     public function index()
     {
-        $data = [
-            //'login' => false
-            'records' => book::all()
-        ];
-        return view('index',$data);
+
+        return view('index');
+    }
+    public function test()
+    {
+        return view('/test');
     }
 }

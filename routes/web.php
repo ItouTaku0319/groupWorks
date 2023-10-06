@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,7 @@ Route::post('/register',[UserController::class,'register']);
 Route::middleware('auth')->group(function(){
     Route::get('/profile',[UserController::class,'profile'])->name('profile');
     Route::post('logout',[UserController::class,'logout'])->name('user.logout');
+    Route::get('logout',[UserController::class,'logout'])->name('user.logout');
 });
 
 Route::get('/login',[UserController::class,'showLogin'])->name('login');
@@ -55,6 +57,7 @@ Route::post('/bookStore',[BookController::class,'review']);
 
 //レビューコントローラー
 Route::get('/reviewInsert',[ReviewController::class,'reviewInsert']);
+Route::post('/reviewInsert',[ReviewController::class,'reviewInsert']);
 
 Route::get('/reviewShow',[ReviewController::class,'reviewShow']);
 Route::post('/reviewShow',[ReviewController::class,'reviewShow']);
@@ -74,3 +77,7 @@ Route::get('/reviewErase',[ReviewController::class,'reviewErase']);
 //レビューの削除
 Route::get('/reviewDelete',[ReviewController::class,'reviewDelete']);
 Route::post('/reviewDelete',[ReviewController::class,'reviewDelete']);
+
+
+
+Route::get('/test',[Controller::class,'test']);

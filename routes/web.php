@@ -74,6 +74,7 @@ Route::post('/reviewUpdate',[ReviewController::class,'reviewUpdate']);
 
 //レビューの削除画面に行く
 Route::get('/reviewErase',[ReviewController::class,'reviewErase']);
+Route::post('/reviewErase',[ReviewController::class,'reviewErase']);
 //レビューの削除
 Route::get('/reviewDelete',[ReviewController::class,'reviewDelete']);
 Route::post('/reviewDelete',[ReviewController::class,'reviewDelete']);

@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.twBase')
 @section('title','新規登録画面')
 @section('header')
 <!--  -->

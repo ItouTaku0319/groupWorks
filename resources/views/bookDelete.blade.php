@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.twBase')
 @section('title','書籍削除画面')
 
 @section('header')

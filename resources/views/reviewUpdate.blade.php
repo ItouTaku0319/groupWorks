@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.twBase')
 @section('title','レビュー更新画面')
 
 @section('header')
@@ -18,5 +18,4 @@
 </tr>
 </table>
 <a href="/profile">ホームへ</a>
-
 @endsection

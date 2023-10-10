@@ -18,5 +18,4 @@
 </tr>
 </table>
 <a href="/profile">ホームへ</a>
-
 @endsection

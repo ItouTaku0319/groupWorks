@@ -1,5 +1,5 @@
 @extends('layouts.base')
-@section('title','')
+@section('title','レビュー削除画面')
 
 @section('header')
 <!--  -->

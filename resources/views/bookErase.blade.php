@@ -10,9 +10,9 @@
 @section('main')
 <!--  -->
 
-<h1>書籍削除</h1>
+<h1>以下の書籍を削除する</h1>
 <a href="/profile">ホームへ</a>
-@if(isset($record))
+{{-- @if(isset($record))
 <a href="/bookErase">投稿番号選択画面へ</a>
 <form action="/bookDelete" method="post">
     @csrf
@@ -33,6 +33,21 @@
         投稿番号<input type="number" name="id" required>
         <input type="submit" value="データ表示">
     </form>
-@endif
+@endif --}}
 
+<table>
+    <tr><th>投稿番号</th><th>ISBNコード</th><th>タイトル</th><th>作者</th></tr>
+    <form action="/bookDelete" method="post">
+        @csrf
+        @foreach($books as $book)
+            <tr>
+                <td><input type="text" name="id" value="{{ $book->id }}"></td>
+                <td><input type="text" name="ISBN" value="{{ $book->ISBN}}" readonly></td>
+                <td><input type="text" name="bookName" value="{{ $book->bookName}}" readonly></td>
+                <td><input type="text" name="author" value="{{ $book->author}}" readonly></td>
+                <td><input type="submit" value="削除" class="btn btn-primary"></td>
+            </tr>
+        @endforeach
+    </form>
+    </table>
 @endsection

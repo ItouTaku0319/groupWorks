@@ -1,5 +1,6 @@
-@extends('layouts.base')
-@section('title','全件表示')
+{{-- 本の全件表示 --}}
+@extends('layouts.twBase')
+@section('title','書籍一覧表示')
 
 @section('header')
 <!--  -->
@@ -27,10 +28,14 @@
 
         {{-- <a href="/reviewUserList?id={{ $record->id }}">自分の投稿</a> --}}
         
-
         
+
+        @if(\Illuminate\Support\Facades\Auth::user()->department_id === 1)
+    {{-- <a href="{{ route('bookErase' )}}">書籍削除</a> --}}
+
+    <a href="/bookErase?id={{ $record->id }}">書籍削除</a>
+    @endif
     </td>
-    <td>
     
     
 </tr>

@@ -5,7 +5,7 @@
 @extends('layouts.base')
     --}}
 
-@section('title','ログインページ')
+@section('title','プロフィール')
 
 @section('header')
 <!--  -->
@@ -22,7 +22,7 @@
     
     <br>
     <a href="{{ route('bookRegister') }}">書籍登録へ</a>
-    <a href="{{ route('bookErase' )}}">書籍削除へ</a>
+    {{-- <a href="{{ route('bookErase' )}}">書籍削除へ</a> --}}
 @else
     あなたは{{ \Illuminate\Support\Facades\Auth::user()->department_name }}です
 @endif

@@ -1,5 +1,5 @@
-@extends('layouts.base')
-@section('title','')
+@extends('layouts.twBase')
+@section('title','レビュー更新')
 
 @section('header')
 <!--  -->
@@ -20,8 +20,8 @@
     @csrf
 @foreach($reviews as $review)
     <tr>
-        <input type="text" name="id" value="{{ $review->id}}">
-        <input type="text" name="bookId" value="{{ $review->bookId}}">
+        <input type="hidden" name="id" value="{{ $review->id}}">
+        <input type="hidden" name="bookId" value="{{ $review->bookId}}">
         <td><input type="text" name="usersId" value="{{ $review->usersId}}" readonly></td>
 
         <td>{{ $review->recommend }}
@@ -40,5 +40,5 @@
     </tr>
 @endforeach
 </form>
-
+</table>
 @endsection

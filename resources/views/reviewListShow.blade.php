@@ -1,5 +1,5 @@
-@extends('layouts.base')
-@section('title','')
+@extends('layouts.twBase')
+@section('title','レビュー一覧表示')
 
 @section('header')
 <!--  -->
@@ -26,14 +26,22 @@
     @csrf
     <input type="hidden" name="id" value="{{ $bookInfo->id }}">
     <button type="submit" name="show_all_reviews">全てのレビューを表示</button>
-    <button type="submit" name="show_my_reviews">自分のレビューを表示</button>
+    <button type="submit" name="show_my_reviews">自分のレビューのみを表示</button>
 </form>
 
 <table class="table">
 <tr><th>ユーザー</th><th>おすすめ度</th><th>コメント</th><th>コマンド</th></tr>
+
+        
+
 @foreach($reviews as $review)
     <tr>
-        <td>{{ $review->usersId}}</td>
+        @foreach ($users as $user)
+            @if ($user->id == $review->usersId)
+                <td>{{ $user->name }}</td>
+            @endif
+        @endforeach
+        
         <td>{{ $review->recommend }}</td>
         <td>{{ $review->comment }}</td>
         @if( $review->usersId ==  $userInfo )

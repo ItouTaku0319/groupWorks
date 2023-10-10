@@ -19,4 +19,9 @@ class Controller extends BaseController
     {
         return view('/test');
     }
+
+    public function starTest()
+    {
+        return view('/starTest');
+    }
 }

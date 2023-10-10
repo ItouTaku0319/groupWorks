@@ -82,3 +82,4 @@ Route::post('/reviewDelete',[ReviewController::class,'reviewDelete']);
 
 
 Route::get('/test',[Controller::class,'test']);
+Route::get('/starTest',[Controller::class,'starTest']);

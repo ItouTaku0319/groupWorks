@@ -10,16 +10,25 @@
 @section('main')
 <!--  -->
 
-<a href="/profile">ホームへ</a>
+@php
+    $recommendTotal = 0;
+    $count = 0;
+    foreach($reviews as $review){
+    $recommendTotal += $review->recommend;
+    $count++;
+    }
+    $recommendAverage = $recommendTotal / $count;
+@endphp
 
-<table class="table">
-<tr><th>番号</th><th>ISBNコード</th><th>タイトル</th><th>作者</th></tr>
+<a href="/profile">ホームへ</a>
+<table>
+<tr><th>番号</th><th>ISBNコード</th><th>タイトル</th><th>作者</th><th>平均おすすめ度</th></tr>
 <tr>
     <td>{{ $bookInfo->id }}</td>
     <td>{{ $bookInfo->ISBN }}</td>
     <td>{{ $bookInfo->bookName }}</td>
     <td>{{ $bookInfo->author }}</td>
-    <td></td>
+    <td>{{ $recommendAverage }}</td>
 </table>
 
 <form method="POST" action="/reviewList">
@@ -29,7 +38,7 @@
     <button type="submit" name="show_my_reviews">自分のレビューのみを表示</button>
 </form>
 
-<table class="table">
+<table>
 <tr><th>ユーザー</th><th>おすすめ度</th><th>コメント</th><th>コマンド</th></tr>
 
         
@@ -43,6 +52,7 @@
         @endforeach
         
         <td>{{ $review->recommend }}</td>
+
         <td>{{ $review->comment }}</td>
         @if( $review->usersId ==  $userInfo )
         <td>

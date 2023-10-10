@@ -21,7 +21,7 @@
     <p class="text-6xl">あなたは{{ \Illuminate\Support\Facades\Auth::user()->department_name }}です</p>
     
     <br>
-    <a href="{{ route('bookRegister') }}">書籍登録へ</a>
+    <a href="{{ route('bookRegister') }}" >書籍登録へ</a>
     {{-- <a href="{{ route('bookErase' )}}">書籍削除へ</a> --}}
 @else
     あなたは{{ \Illuminate\Support\Facades\Auth::user()->department_name }}です
@@ -29,7 +29,8 @@
 <br>
 {{\Illuminate\Support\Facades\Auth::user()->name}}でログインしています。
 
-<form action="{{ route('user.logout') }}" method="post">
+<form action="{{ route('user.logout') }}" method="post"
+class="">
     @csrf
     <button>ログアウト</button>
 </form>

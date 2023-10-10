@@ -22,9 +22,9 @@
     <td>{{ $record->bookName }}</td>
     <td>{{ $record->author }}</td>
     <td>
-        <a href="/reviewInsert?id={{ $record->id }}">新規</a>
+        <a href="/reviewInsert?id={{ $record->id }}">新規レビュー登録</a>
 
-        <a href="/reviewList?id={{ $record->id }}">一覧</a>
+        <a href="/reviewList?id={{ $record->id }}">レビュー一覧</a>
 
         {{-- <a href="/reviewUserList?id={{ $record->id }}">自分の投稿</a> --}}
         

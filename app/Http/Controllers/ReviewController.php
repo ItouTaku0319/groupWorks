@@ -22,7 +22,9 @@ class ReviewController extends Controller
         
 
         $data = [
-            'record' => book::find($request->id)
+            'userInfo' => Auth::id(),
+            'record' => book::find($request->id),
+            
         ];
         return view('reviewInsert',$data);
     }
@@ -35,11 +37,13 @@ class ReviewController extends Controller
         $input = $request->validate([
             'recommend' => 'required',
             'comment' => 'required',
+            // 'usersId' => 'unique:reviews'
         ]);
         //レビューを登録する
         $review = Review::query()->create([
-            'bookId' => $request['id'],
-            'usersId' => Auth::id(),
+            'bookId' => $request['bookId'],
+            // 'usersId' => Auth::id(),
+            'usersId' => $request['usersId'],
             'recommend' => $request['recommend'],
             'comment'=>$request['comment'],
         ]);

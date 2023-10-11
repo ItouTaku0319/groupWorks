@@ -31,7 +31,7 @@ class ReviewController extends Controller
     {
 
         $review = Review::query()->create([
-            'bookId' => $request['id'],
+            'bookId' => $request['bookId'],
             'usersId' => Auth::id(),
             'recommend' => $request['recommend'],
             'comment'=>$request['comment'],

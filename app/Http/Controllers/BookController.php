@@ -40,22 +40,29 @@ class BookController extends Controller
         $book_info = $response->json();
 
         // JSONデータからTitleTextとPersonNameを取得
-        if (isset($book_info[0]['onix']['DescriptiveDetail']['TitleDetail']['TitleElement']['TitleText']['content'])) {
-            $titleText = $book_info[0]['onix']['DescriptiveDetail']['TitleDetail']['TitleElement']['TitleText']['content'];
+        if (isset($book_info[0]['summary']['title'])) {
+            $titleText = $book_info[0]['summary']['title'] ?? 'タイトルが取得できません';
         } else {
             $titleText = 'タイトルが取得できません';
         }
-
-        if (isset($book_info[0]['onix']['DescriptiveDetail']['Contributor']['0']['PersonName'])) {
-            $personName = $book_info[0]['onix']['DescriptiveDetail']['Contributor']['0']['PersonName']['content'];
+        if (isset($book_info[0]['summary']['author'])) {
+            $authorArray = $book_info[0]['summary']['author'];  //"Boswell,Dustin Foucher,Trevor 角,征典"
+            $authorArray = explode(' ', $authorArray);  //["Boswell,Dustin", "Foucher,Trevor", "角,征典"]
+            $authorExplode = explode(',', $authorArray[0]);  //["Boswell", "Dustin"]
+            if(isset($authorExplode[1])) {
+                $author = $authorExplode[0] . ' ' . $authorExplode[1];  //"Dustin Boswell"
+            } else {
+                $author = $authorExplode[0];
+            }
         } else {
-            $personName = '著者が取得できません';
+            $author = '著者が取得できません';
         }
+
 
         $book = Book::query()->create([
             'ISBN' => $request['ISBN'],
             'bookname'=>$titleText,
-            'author' => $personName,
+            'author' =>$author ,
         ]);
         return view('bookStore',$book);
 

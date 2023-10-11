@@ -19,7 +19,9 @@ class ReviewController extends Controller
 
     public function reviewInsert(Request $request)
     {
-        
+        if($request->isMethod('get')){
+            return view("profile");
+        }
 
         $data = [
             'userInfo' => Auth::id(),
@@ -32,7 +34,10 @@ class ReviewController extends Controller
     //コメント登録メソッド
     public function reviewShow(Request $request)
     {
-
+        if($request->isMethod('get')){
+            return view("profile");
+        }
+        
         //バリデーション()
         $input = $request->validate([
             'recommend' => 'required',
@@ -55,7 +60,9 @@ class ReviewController extends Controller
     //レビュー一覧を表示するメソッド
     public function reviewList(Request $request)
     {
-        
+        if(!isset($request->id)){
+            return view("profile");
+        }
         $data = [
             //ログインしているユーザーのid
             'userInfo' => Auth::id(),
@@ -68,12 +75,6 @@ class ReviewController extends Controller
         $data['reviews'] = review::where('bookId', $request->id)->get();
         //レビュー一覧へ
         return view('reviewListShow', $data);
-        // $data = [
-        //     'userInfo' => Auth::id(),
-        //     'bookInfo' => book::find($request->id),
-        //     'reviews' => review::where('bookId',$request->id)->get()
-        // ];
-        // return view('reviewListShow',$data);
     }
 
 
@@ -86,7 +87,6 @@ class ReviewController extends Controller
             //リクエストされてきたidでレビューを特定
             'review' => review::find($request->id),
         ];
-        // $data['reviews'] = review::where('id', $request->id)->where('usersId', Auth::id())->get();
 
         //編集画面へ
         return view('reviewEdit',$data);
@@ -96,8 +96,13 @@ class ReviewController extends Controller
     //レビューの編集メソッド
     public function reviewUpdate(Request $request)
     {
+        if($request->isMethod('get')){
+            return view("profile");
+        }
+        
         //更新対象のレコードをフォームからのid値をもとにモデルに取り出す
         $review = review::find($request->id);
+
         //フォームのデータをモデルに代入
         $review -> recommend = $request->recommend;
         $review -> comment = $request->comment;
@@ -112,11 +117,17 @@ class ReviewController extends Controller
         ];
         //以下のレビューを更新しました画面へ
         return view('reviewUpdate',$data);
+        
+
     }
 
     
     public function reviewErase(Request $request)
     {
+        if($request->isMethod('get')){
+            return view("profile");
+        }
+        
         $data = [
             //ログインしているユーザーのid
             'userInfo' => Auth::id(),
@@ -131,6 +142,10 @@ class ReviewController extends Controller
     //レビューの削除メソッド
     public function reviewDelete(Request $request)
     {
+        if($request->isMethod('get')){
+            return view("profile");
+        }
+        
         //削除対象のレコードをフォームからのid値をもとに
         //モデルに取り出す
         $review = review::find($request->id);

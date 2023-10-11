@@ -17,7 +17,7 @@
                     <span>{{ session('error') }}</span>
                 </div>
             @endif
-            <form class="card-body" action="" method="post">
+            <form class="card-body" action="bookStore" method="post">
                 @csrf
                 <div class="form-control">
                     <label for="ISBN" class="label-text">ISBNコード</label>

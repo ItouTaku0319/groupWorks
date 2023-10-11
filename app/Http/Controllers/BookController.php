@@ -105,10 +105,8 @@ class BookController extends Controller
         }*/
         $id=$request->id;
         $data = [
-            // 'books' => book::find($id)
             'book' =>book::find($request->id)
         ];
-        // $data['books'] = book::where('id', $request->id)->find();
         return view('bookErase',$data);
     }
 
@@ -121,6 +119,9 @@ class BookController extends Controller
 
     public function bookDelete(Request $request)
     {
+        if($request->isMethod('get')){
+            return view("profile");
+        }
         //削除対象のレコードをフォームからのid値をもとにモデルに取り出す
         $book = Book::find($request->id);
         //データを削除するメソッドを実行

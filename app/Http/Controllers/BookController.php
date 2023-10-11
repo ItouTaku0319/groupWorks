@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -29,6 +30,13 @@ class BookController extends Controller
         $input = $request->validate([
             'ISBN' => 'required | string'
         ]);
+
+        $uniq=Book::where("ISBN",$request->ISBN)->first();
+        if ($uniq) {
+            return redirect()->back()
+                ->with('error', '指定された書籍は既に登録されています。')
+                ->withInput();
+        }
 
         $isbn = $request['ISBN'];
         $api_url = "https://api.openbd.jp/v1/get?isbn={$isbn}";
@@ -97,9 +105,10 @@ class BookController extends Controller
         }*/
         $id=$request->id;
         $data = [
-            'books' => book::find($id)
+            // 'books' => book::find($id)
+            'book' =>book::find($request->id)
         ];
-        $data['books'] = book::where('id', $request->id)->get();
+        // $data['books'] = book::where('id', $request->id)->find();
         return view('bookErase',$data);
     }
 
@@ -116,6 +125,12 @@ class BookController extends Controller
         $book = Book::find($request->id);
         //データを削除するメソッドを実行
         $book->delete();
+
+        $reviews = Review::where("bookId", $request->id)->get();
+        foreach($reviews as $review){
+            $review->delete();
+        }
+
         $data = [
             'id' => $request->id,
             'ISBN' => $request->ISBN,

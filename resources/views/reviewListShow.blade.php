@@ -83,7 +83,50 @@
                             <td>{{ $user->name }}</td>
                         @endif
                     @endforeach
-                    <td>{{ $review->recommend }}</td>
+                    <td>
+                        <div class="rating">
+                            <input
+                                type="radio"
+                                name="recommend"
+                                value="1"
+                                {{ $review->recommend == 1 ? 'checked' : '' }}
+                                class="mask mask-star-2 bg-orange-400"
+                                disabled
+                            />
+                            <input
+                                type="radio"
+                                name="recommend"
+                                value="2"
+                                {{ $review->recommend == 2 ? 'checked' : '' }}
+                                class="mask mask-star-2 bg-orange-400"
+                                disabled
+                            />
+                            <input
+                                type="radio"
+                                name="recommend"
+                                value="3"
+                                {{ $review->recommend == 3 ? 'checked' : '' }}
+                                class="mask mask-star-2 bg-orange-400"
+                                disabled
+                            />
+                            <input
+                                type="radio"
+                                name="recommend"
+                                value="4"
+                                {{ $review->recommend == 4 ? 'checked' : '' }}
+                                class="mask mask-star-2 bg-orange-400"
+                                disabled
+                            />
+                            <input
+                                type="radio"
+                                name="recommend"
+                                value="5"
+                                {{ $review->recommend == 5 ? 'checked' : '' }}
+                                class="mask mask-star-2 bg-orange-400"
+                                disabled
+                            />
+                        </div>
+                    </td>
                     <td>{{ $review->comment }}</td>
                 </tr>
                 @else
@@ -93,7 +136,50 @@
                             <td>{{ $user->name }}</td>
                         @endif
                     @endforeach
-                    <td>{{ $review->recommend }}</td>
+                    <td>
+                        <div class="rating">
+                            <input
+                                type="radio"
+                                name="recommend"
+                                value="1"
+                                {{ $review->recommend == 1 ? 'checked' : '' }}
+                                class="mask mask-star-2 bg-orange-400"
+                                disabled
+                            />
+                            <input
+                                type="radio"
+                                name="recommend"
+                                value="2"
+                                {{ $review->recommend == 2 ? 'checked' : '' }}
+                                class="mask mask-star-2 bg-orange-400"
+                                disabled
+                            />
+                            <input
+                                type="radio"
+                                name="recommend"
+                                value="3"
+                                {{ $review->recommend == 3 ? 'checked' : '' }}
+                                class="mask mask-star-2 bg-orange-400"
+                                disabled
+                            />
+                            <input
+                                type="radio"
+                                name="recommend"
+                                value="4"
+                                {{ $review->recommend == 4 ? 'checked' : '' }}
+                                class="mask mask-star-2 bg-orange-400"
+                                disabled
+                            />
+                            <input
+                                type="radio"
+                                name="recommend"
+                                value="5"
+                                {{ $review->recommend == 5 ? 'checked' : '' }}
+                                class="mask mask-star-2 bg-orange-400"
+                                disabled
+                            />
+                        </div>
+                    </td>
                     <td>{{ $review->comment }}</td>
                 </tr>
                 @endif

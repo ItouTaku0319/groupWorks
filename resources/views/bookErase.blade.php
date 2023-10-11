@@ -1,7 +1,7 @@
 @extends('layouts.twBase') @section('title','書籍削除') @section('main')
 <!--  -->
 
-@if(isset($record))
+@if(isset($book))
 
 <div class="hero">
     <div class="hero-content flex-col lg:flex-row-reverse w-full">
@@ -28,37 +28,37 @@
                     </p>
                     <p class="border-b pb-1">投稿番号</p>
                     <p class="pt-1 pb-5">
-                        {{ $record->id }}
+                        {{ $book->id }}
                     </p>
                     <p class="border-b pb-1">ISBNコード</p>
                     <p class="pt-1 pb-5">
-                        {{ $record->ISBN }}
+                        {{ $book->ISBN }}
                     </p>
                     <p class="border-b pb-1">タイトル</p>
                     <input
                         class="pt-1 pb-5 focus:outline-none"
                         type="text"
                         name="bookName"
-                        value="{{ $record->bookName }}"
+                        value="{{ $book->bookName }}"
                         readonly
                     />
                     <p class="border-b pb-1">作者</p>
                     <p class="pt-1 pb-5">
-                        {{ $record->author }}
+                        {{ $book->author }}
                     </p>
 
                     <input
                         hidden
                         type="number"
                         name="id"
-                        value="{{ $record->id }}"
+                        value="{{ $book->id }}"
                         readonly
                     />
                     <input
                         hidden
                         type="text"
                         name="ISBN"
-                        value="{{ $record->ISBN }}"
+                        value="{{ $book->ISBN }}"
                         readonly
                     />
 
@@ -66,7 +66,7 @@
                         hidden
                         type="text"
                         name="author"
-                        value="{{ $record->author }}"
+                        value="{{ $book->author }}"
                         readonly
                     /><br />
                 </div>
@@ -92,7 +92,7 @@
         </div>
 
         <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form class="card-body" action="/bookErase" method="post">
+            <form class="card-body" action="" method="post">
                 @csrf
                 <div class="form-control">
                     <label for="bookId" class="label-text">投稿番号</label>
@@ -113,5 +113,19 @@
         </div>
     </div>
 </div>
-
+{{-- <table>
+    <tr><th>投稿番号</th><th>ISBNコード</th><th>タイトル</th><th>作者</th></tr>
+    <form action="/bookDelete" method="post">
+        @csrf
+        @foreach($books as $book)
+            <tr>
+                <td><input type="text" name="id" value="{{ $book->id }}"></td>
+                <td><input type="text" name="ISBN" value="{{ $book->ISBN}}" readonly></td>
+                <td><input type="text" name="bookName" value="{{ $book->bookName}}" readonly></td>
+                <td><input type="text" name="author" value="{{ $book->author}}" readonly></td>
+                <td><input type="submit" value="削除" class="btn btn-primary"></td>
+            </tr>
+        @endforeach
+    </form>
+    </table> --}}
 @endif @endsection

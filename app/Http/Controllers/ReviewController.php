@@ -84,9 +84,9 @@ class ReviewController extends Controller
             //ログインしているユーザーのid
             'userInfo' => Auth::id(),
             //リクエストされてきたidでレビューを特定
-            'reviewInfo' => review::find($request->id),
+            'review' => review::find($request->id),
         ];
-        $data['reviews'] = review::where('id', $request->id)->where('usersId', Auth::id())->get();
+        // $data['reviews'] = review::where('id', $request->id)->where('usersId', Auth::id())->get();
 
         //編集画面へ
         return view('reviewEdit',$data);

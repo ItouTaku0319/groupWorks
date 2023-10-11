@@ -68,7 +68,9 @@
                     <th>タイトル</th>
                     <th>作者</th>
                     <th>レビュー</th>
+                    @if(\Illuminate\Support\Facades\Auth::user()->department_id === 1)
                     <th>削除</th>
+                    @endif
                 </tr>
                 @foreach($records as $record)
                 <tr>
@@ -88,6 +90,7 @@
                             >一覧</a
                         >
                     </td>
+                    @if(\Illuminate\Support\Facades\Auth::user()->department_id === 1)
                     <td>
                         <form
                             action="/bookErase?id={{ $record->id }}"
@@ -115,6 +118,7 @@
                             </label>
                         </form>
                     </td>
+                    @endif
                 </tr>
                 @endforeach
             </table>

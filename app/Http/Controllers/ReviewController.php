@@ -37,17 +37,13 @@ class ReviewController extends Controller
         $input = $request->validate([
             'recommend' => 'required',
             'comment' => 'required',
-            // 'usersId' => 'unique:reviews'
+            'bookId' => 'unique:reviews,bookId,NULL,id,usersId,' . Auth::id()
         ]);
+
         //レビューを登録する
         $review = Review::query()->create([
             'bookId' => $request['bookId'],
-<<<<<<< HEAD
             'usersId' => Auth::id(),
-=======
-            // 'usersId' => Auth::id(),
-            'usersId' => $request['usersId'],
->>>>>>> ceed742c410f4fed8750f7a6229d1ef3245b1596
             'recommend' => $request['recommend'],
             'comment'=>$request['comment'],
         ]);
@@ -64,18 +60,12 @@ class ReviewController extends Controller
             //ログインしているユーザーのid
             'userInfo' => Auth::id(),
             //リクエストされてきたidで本を特定
-            'bookInfo' => book::find($request->id),
+            'book' => book::find($request->id),
             //ユーザーテーブルからidと名前を特定
             'users' => user::select('id','name')->get(),
         ];
-    
-        if ($request->has('show_my_reviews')) {
-            // 自分のレビューのみを取得
-            $data['reviews'] = review::where('bookId', $request->id)->where('usersId', Auth::id())->get();
-        } else {
-            // 全てのレビューを取得
-            $data['reviews'] = review::where('bookId', $request->id)->get();
-        }
+        // 全てのレビューを取得
+        $data['reviews'] = review::where('bookId', $request->id)->get();
         //レビュー一覧へ
         return view('reviewListShow', $data);
         // $data = [

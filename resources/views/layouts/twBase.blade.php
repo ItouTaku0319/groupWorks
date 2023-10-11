@@ -100,55 +100,11 @@
                             and Precision.
                         </p>
                     </div>
-<<<<<<< HEAD
                     <div class="footer__inner text-gray-600">
                         <p>&copy; 2023 JATA書籍管理システム</p>
                         <p>〒566-0022 大阪府摂津市三島1丁目2番1号</p>
                         <p>電話06-6383-0949（代表）</p>
                     </div>
-=======
-                    @endif
-                </ul>
-            </div>
-        </nav> --}}
-    </header>
-
-    @section('main')
-    @show
-
-    <footer class="bg-orange-400 text-gray-600">
-    <div class="container mx-auto py-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="text-gray-600">
-                <h5 class="text-xl font-semibold mb-4">LIBLALY of JATA</h5>
-                <p class="text-gray-600">Our company philosophy is Justice, Ambition, Trust, and Precision.</p>
-            </div>
-            <div class="footer__inner text-gray-600">
-                <p>&copy; 2023 JATA書籍管理システム</p>
-                <p>〒566-0022 大阪府摂津市三島1丁目2番1号</p>
-                <p>電話06-6383-0949（代表）</p>
-            </div>
-        </div>
-    </div>
-    <div class="bg-gray-900 text-gray-300 py-2">
-        <div class="container mx-auto text-center">&copy; 2023 JATA Inc.</div>
-    </div>
-</footer>
-
-    {{-- <footer>
-        <div class="page-footer orange accent-3">
-            <div class="container">
-                <div class="row">
-                    <div class="col l6 s12">
-                        <h5 class="white-text">LIBLALY of JATA</h5>
-                        <p class="grey-text text-lighten-4">Our company philosophy is Justice, Ambition, Trust, and Precision.</p>
-                    </div>
-                    <div class="footer__inner">
-                    <p>&copy; 2023 JATA書籍管理システム</p>
-                    <p>〒566-0022 大阪府摂津市三島1丁目2番1号</p>
-                    <p>電話06-6383-0949（代表）</p>
-                </div>
->>>>>>> ceed742c410f4fed8750f7a6229d1ef3245b1596
                 </div>
             </div>
             <div class="bg-gray-900 text-gray-300 py-2">
@@ -156,18 +112,9 @@
                     &copy; 2023 JATA Inc.
                 </div>
             </div>
-<<<<<<< HEAD
         </footer>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script src="/js/script.js"></script>
     </body>
-=======
-        </div>
-    </footer> --}}
-
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'></script><script  src="/js/script.js"></script>
-</body>
->>>>>>> ceed742c410f4fed8750f7a6229d1ef3245b1596
 </html>

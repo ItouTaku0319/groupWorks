@@ -1,17 +1,8 @@
-<<<<<<< HEAD
 @extends('layouts.twBase') @section('title','全件表示') @section('header')
-=======
-{{-- 本の全件表示 --}}
-@extends('layouts.twBase')
-@section('title','書籍一覧表示')
-
-@section('header')
->>>>>>> ceed742c410f4fed8750f7a6229d1ef3245b1596
 <!--  -->
 
 @endsection @section('main')
 <!--  -->
-<<<<<<< HEAD
 <div class="hero container mx-auto">
     <div class="hero-content flex flex-col w-full gap-4">
         <div class="text-center lg:text-left w-full grid gap-10">
@@ -130,39 +121,5 @@
         </div>
     </div>
 </div>
-=======
-<h1>全件表示</h1>
-<a href="/profile">ホームへ</a>
-
-<table class="table">
-<tr><th>番号</th><th>ISBNコード</th><th>タイトル</th><th>作者</th><th>おすすめ</th></tr>
-@foreach($records as $record)
-<tr>
-    <td>{{ $record->id }}</td>
-    <td>{{ $record->ISBN }}</td>
-    <td>{{ $record->bookName }}</td>
-    <td>{{ $record->author }}</td>
-    <td>
-        <a href="/reviewInsert?id={{ $record->id }}">新規レビュー登録</a>
-
-        <a href="/reviewList?id={{ $record->id }}">レビュー一覧</a>
-
-        {{-- <a href="/reviewUserList?id={{ $record->id }}">自分の投稿</a> --}}
-        
-        
-
-        @if(\Illuminate\Support\Facades\Auth::user()->department_id === 1)
-    {{-- <a href="{{ route('bookErase' )}}">書籍削除</a> --}}
-
-    <a href="/bookErase?id={{ $record->id }}">書籍削除</a>
-    @endif
-    </td>
-    
-    
-</tr>
-@endforeach
-</table>
-<br>
->>>>>>> ceed742c410f4fed8750f7a6229d1ef3245b1596
 
 @endsection

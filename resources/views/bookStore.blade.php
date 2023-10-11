@@ -1,9 +1,5 @@
 @extends('layouts.twBase')
-<<<<<<< HEAD
 @section('title','')
-=======
-@section('title','データ登録画面')
->>>>>>> ceed742c410f4fed8750f7a6229d1ef3245b1596
 
 @section('header')
 <!--  -->

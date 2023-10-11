@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 @extends('layouts.twBase') @section('title','レビュー一覧') @section('main')
+=======
+@extends('layouts.twBase')
+@section('title','レビュー一覧表示')
+
+@section('header')
+>>>>>>> ceed742c410f4fed8750f7a6229d1ef3245b1596
 <!--  -->
 
 <div class="hero container mx-auto">
@@ -122,8 +129,17 @@
 
 <!--  -->
 
-<a href="/profile">ホームへ</a>
+@php
+    $recommendTotal = 0;
+    $count = 0;
+    foreach($reviews as $review){
+    $recommendTotal += $review->recommend;
+    $count++;
+    }
+    $recommendAverage = $recommendTotal / $count;
+@endphp
 
+<<<<<<< HEAD
 <table class="table">
     <tr>
         <th>番号</th>
@@ -138,15 +154,27 @@
         <td>{{ $bookInfo->author }}</td>
         <td></td>
     </tr>
+=======
+<a href="/profile">ホームへ</a>
+<table>
+<tr><th>番号</th><th>ISBNコード</th><th>タイトル</th><th>作者</th><th>平均おすすめ度</th></tr>
+<tr>
+    <td>{{ $bookInfo->id }}</td>
+    <td>{{ $bookInfo->ISBN }}</td>
+    <td>{{ $bookInfo->bookName }}</td>
+    <td>{{ $bookInfo->author }}</td>
+    <td>{{ $recommendAverage }}</td>
+>>>>>>> ceed742c410f4fed8750f7a6229d1ef3245b1596
 </table>
 
 <form method="POST" action="/reviewList">
     @csrf
     <input type="hidden" name="id" value="{{ $bookInfo->id }}" />
     <button type="submit" name="show_all_reviews">全てのレビューを表示</button>
-    <button type="submit" name="show_my_reviews">自分のレビューを表示</button>
+    <button type="submit" name="show_my_reviews">自分のレビューのみを表示</button>
 </form>
 
+<<<<<<< HEAD
 <table class="table">
     <tr>
         <th>ユーザー</th>
@@ -155,9 +183,23 @@
         <th>コマンド</th>
     </tr>
     @foreach($reviews as $review)
+=======
+<table>
+<tr><th>ユーザー</th><th>おすすめ度</th><th>コメント</th><th>コマンド</th></tr>
+
+        
+
+@foreach($reviews as $review)
+>>>>>>> ceed742c410f4fed8750f7a6229d1ef3245b1596
     <tr>
-        <td>{{ $review->usersId}}</td>
+        @foreach ($users as $user)
+            @if ($user->id == $review->usersId)
+                <td>{{ $user->name }}</td>
+            @endif
+        @endforeach
+        
         <td>{{ $review->recommend }}</td>
+
         <td>{{ $review->comment }}</td>
         @if( $review->usersId == $userInfo )
         <td>

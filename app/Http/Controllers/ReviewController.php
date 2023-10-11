@@ -19,9 +19,12 @@ class ReviewController extends Controller
 
     public function reviewInsert(Request $request)
     {
-        //バリデーション()
+        
+
         $data = [
-            'record' => book::find($request->id)
+            'userInfo' => Auth::id(),
+            'record' => book::find($request->id),
+            
         ];
         return view('reviewInsert',$data);
     }
@@ -30,21 +33,40 @@ class ReviewController extends Controller
     public function reviewShow(Request $request)
     {
 
+        //バリデーション()
+        $input = $request->validate([
+            'recommend' => 'required',
+            'comment' => 'required',
+            // 'usersId' => 'unique:reviews'
+        ]);
+        //レビューを登録する
         $review = Review::query()->create([
             'bookId' => $request['bookId'],
+<<<<<<< HEAD
             'usersId' => Auth::id(),
+=======
+            // 'usersId' => Auth::id(),
+            'usersId' => $request['usersId'],
+>>>>>>> ceed742c410f4fed8750f7a6229d1ef3245b1596
             'recommend' => $request['recommend'],
             'comment'=>$request['comment'],
         ]);
+        //以下のレビューを登録しましたの画面へ遷移
         return view('reviewShow',$review);
         //return redirect()->route('');
     }
 
+    //レビュー一覧を表示するメソッド
     public function reviewList(Request $request)
     {
+        
         $data = [
+            //ログインしているユーザーのid
             'userInfo' => Auth::id(),
+            //リクエストされてきたidで本を特定
             'bookInfo' => book::find($request->id),
+            //ユーザーテーブルからidと名前を特定
+            'users' => user::select('id','name')->get(),
         ];
     
         if ($request->has('show_my_reviews')) {
@@ -54,7 +76,7 @@ class ReviewController extends Controller
             // 全てのレビューを取得
             $data['reviews'] = review::where('bookId', $request->id)->get();
         }
-    
+        //レビュー一覧へ
         return view('reviewListShow', $data);
         // $data = [
         //     'userInfo' => Auth::id(),
@@ -65,17 +87,23 @@ class ReviewController extends Controller
     }
 
 
+    
     public function reviewEdit(Request $request)
     {
         $data = [
+            //ログインしているユーザーのid
             'userInfo' => Auth::id(),
+            //リクエストされてきたidでレビューを特定
             'reviewInfo' => review::find($request->id),
         ];
         $data['reviews'] = review::where('id', $request->id)->where('usersId', Auth::id())->get();
 
+        //編集画面へ
         return view('reviewEdit',$data);
     }
 
+
+    //レビューの編集メソッド
     public function reviewUpdate(Request $request)
     {
         //更新対象のレコードをフォームからのid値をもとにモデルに取り出す
@@ -92,19 +120,25 @@ class ReviewController extends Controller
             'recommend' => $request->recommend,
             'comment' => $request->comment,
         ];
+        //以下のレビューを更新しました画面へ
         return view('reviewUpdate',$data);
     }
 
+    
     public function reviewErase(Request $request)
     {
         $data = [
+            //ログインしているユーザーのid
             'userInfo' => Auth::id(),
+            //リクエストされてきたidでレビューを特定
             'reviewInfo' => review::find($request->id),
         ];
+
         $data['reviews'] = review::where('id', $request->id)->where('usersId', Auth::id())->get();
         return view('reviewErase',$data);
     }
 
+    //レビューの削除メソッド
     public function reviewDelete(Request $request)
     {
         //削除対象のレコードをフォームからのid値をもとに

@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 @extends('layouts.twBase') @section('title','書籍登録画面') @section('main')
+=======
+@extends('layouts.twBase')
+@section('title','書籍登録画面')
+
+@section('header')
+>>>>>>> ceed742c410f4fed8750f7a6229d1ef3245b1596
 <!--  -->
 <div class="hero">
     <div class="hero-content flex-col lg:flex-row-reverse w-full">

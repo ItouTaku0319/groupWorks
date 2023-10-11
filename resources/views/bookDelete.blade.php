@@ -1,5 +1,5 @@
-@extends('layouts.base')
-@section('title','書籍削除')
+@extends('layouts.twBase')
+@section('title','書籍削除画面')
 
 @section('header')
 <!--  -->

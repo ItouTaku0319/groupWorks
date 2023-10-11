@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 
@@ -81,7 +82,7 @@ class BookController extends Controller
     //書籍削除画面へ遷移
     public function showbookErase(Request $request)
     {
-        //get通信の場合
+        /*get通信の場合
         if($request->isMethod('get')){
             return view ('bookErase');
         }elseif($request->isMethod('post')){
@@ -93,8 +94,13 @@ class BookController extends Controller
             return view('bookErase',$data);
         }else{
             redirect('/');
-        }
-        
+        }*/
+        $id=$request->id;
+        $data = [
+            'books' => book::find($id)
+        ];
+        $data['books'] = book::where('id', $request->id)->get();
+        return view('bookErase',$data);
     }
 
     //削除用アクションメソッドの定義
